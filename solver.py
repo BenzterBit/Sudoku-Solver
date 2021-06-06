@@ -1,13 +1,18 @@
 def input_board():
-	grid_size = int(input("what is the grid size of the board"))
+	'''
+	inputs each number line by line
+	'''
+	grid_size = int(input("what is the grid size of the board\n"))
 	row = col = grid_size*3
 	board=[]
-
+	valid_nos = [0,1,2,3,4,5,6,7,8,9]
 	print('start entering the board row wise')
 	for i in range(row):
 		rowlist= []
 		for j in range(col):
 			x=int(input())
+			while x not in valid_nos:
+				x=int(input('that was not a valid input, plzz enter valid number\n'))
 			rowlist.append(x)
 		board.append(rowlist)
 	return board
