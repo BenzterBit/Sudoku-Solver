@@ -1,14 +1,22 @@
-board = [
-    [7,8,0,4,0,0,1,2,0],
-    [6,0,0,0,7,5,0,0,9],
-    [0,0,0,6,0,1,0,7,8],
-    [0,0,7,0,4,0,2,6,0],
-    [0,0,1,0,5,0,9,3,0],
-    [9,0,4,0,6,0,0,0,5],
-    [0,7,0,3,0,0,0,1,2],
-    [1,2,0,0,0,7,4,0,0],
-    [0,4,9,2,0,6,0,0,7]
-]
+def input_board():
+	'''
+	inputs each number line by line
+	'''
+	grid_size = int(input("what is the grid size of the board\n"))
+	row = col = grid_size*3
+	board=[]
+	valid_nos = [0,1,2,3,4,5,6,7,8,9]
+	print('start entering the board row wise')
+	for i in range(row):
+		rowlist= []
+		for j in range(col):
+			x=int(input())
+			while x not in valid_nos:
+				x=int(input('that was not a valid input, plzz enter valid number\n'))
+			rowlist.append(x)
+		board.append(rowlist)
+	return board
+
 
 def print_board(bo):
 	'''
@@ -101,10 +109,13 @@ def solve(bo):
 
 
 if __name__ == "__main__":
+	board = input_board()
+	print("before the solving")
 	print_board(board)
 	print(" ")
 	solve(board)
 	print(" ")
+	print("after the solving")
 	print_board(board)
 
 
