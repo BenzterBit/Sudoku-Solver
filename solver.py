@@ -1,4 +1,4 @@
-board = board = [
+board = [
     [7,8,0,4,0,0,1,2,0],
     [6,0,0,0,7,5,0,0,9],
     [0,0,0,6,0,1,0,7,8],
@@ -11,6 +11,9 @@ board = board = [
 ]
 
 def print_board(bo):
+	'''
+	prints the board in a stylised fashion 
+	'''
 	for i in range(len(bo)):
 		if i%3==0 and i!=0:
 			print('- - - - - - - - - - - -')
@@ -24,4 +27,86 @@ def print_board(bo):
 			else:
 				print(str(bo[i][j])+' ',end="")
 
-print_board(board)
+
+def find_empty(bo):
+	'''
+	finds empty spaces i.e. '0' on the board 
+	returns tuple (i,j)
+	'''
+	for i in range(len(bo)):
+		for j in range(len(bo[0])):
+			if bo[i][j]==0:
+				return (i,j)
+
+def valid(bo,num,pos):
+	'''
+	checking if the board is valid
+	bo - board
+	num - number we entered in the board
+	pos - tuple (x,y) , position of the entry on the board
+
+	returns True is number is valid , False if not 
+	'''
+	x,y = pos
+	#checking if row is valid
+	for i in range(len(bo[0])):
+		if bo[x][i] == num and y!=i: #y is the y cordinate or in the case the column number
+			return False
+
+	#checking if column is valid
+	for i in range(len(bo)):
+		if bo[y][i]==num and x==i:
+			return False
+
+	#check box say (0,4)
+	box_x = x//3 # box_x = 0  
+	box_y = y//3 # box_y= 1
+
+	for i in range(box_x*3, box_x*3 +3):
+		for j in range(box_y*3, box_y*3 +3):
+			if bo[i][j]==num and (i,j)!=pos:
+				return False
+
+	return True
+
+
+def solve(bo):
+	'''
+	takes board as the input 
+	if we do not find an empty space i.e. reached the end, as we are using backtracking, the only way to reach the
+	end is if we have found the solution and we output the board
+	
+	else
+	we keep backtracking using recursion till we find the valid solution 
+
+	returns True or False
+
+	'''
+	found = find_empty(bo)
+	if not found:
+		return True
+	else:
+		row,col = found
+
+	for i in range(1,10):
+		if valid(bo,i,(row,col)):
+			bo[row][col]= i
+
+			if solve(bo):
+				return True
+
+			bo[row][col]=0
+	return False
+
+
+
+if __name__ == "__main__":
+	print_board(board)
+	print(" ")
+	solve(board)
+	print(" ")
+	print_board(board)
+
+
+
+
