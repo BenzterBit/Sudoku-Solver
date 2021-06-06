@@ -1,14 +1,17 @@
-board = [
-    [7,8,0,4,0,0,1,2,0],
-    [6,0,0,0,7,5,0,0,9],
-    [0,0,0,6,0,1,0,7,8],
-    [0,0,7,0,4,0,2,6,0],
-    [0,0,1,0,5,0,9,3,0],
-    [9,0,4,0,6,0,0,0,5],
-    [0,7,0,3,0,0,0,1,2],
-    [1,2,0,0,0,7,4,0,0],
-    [0,4,9,2,0,6,0,0,7]
-]
+def input_board():
+	grid_size = int(input("what is the grid size of the board"))
+	row = col = grid_size*3
+	board=[]
+
+	print('start entering the board row wise')
+	for i in range(row):
+		rowlist= []
+		for j in range(col):
+			x=int(input())
+			rowlist.append(x)
+		board.append(rowlist)
+	return board
+
 
 def print_board(bo):
 	'''
@@ -101,6 +104,7 @@ def solve(bo):
 
 
 if __name__ == "__main__":
+	board = input_board()
 	print_board(board)
 	print(" ")
 	solve(board)
