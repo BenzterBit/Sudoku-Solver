@@ -105,10 +105,12 @@ def solve(bo):
 
 if __name__ == "__main__":
 	board = input_board()
+	print("before the solving")
 	print_board(board)
 	print(" ")
 	solve(board)
 	print(" ")
+	print("after the solving")
 	print_board(board)
 
 
