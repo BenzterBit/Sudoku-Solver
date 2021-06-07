@@ -17,8 +17,8 @@ for the blank spaces , enter '0' (zero)
 Then run the python script -> solver.py
 It will give the solution as shown above
 
-Time Complexity = O(9^(n*n))
-Space Complexity = O(n*n)
+Time Complexity = O(9^(n^2))
+Space Complexity = O(n^2)
 where 'n' is length of row of sudoku
 
 
