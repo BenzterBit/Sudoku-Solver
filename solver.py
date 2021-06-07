@@ -41,11 +41,10 @@ def find_empty(bo):
 	finds empty spaces i.e. '0' on the board 
 	returns tuple (i,j)
 	'''
-	for i in range(len(bo)):
-		for j in range(len(bo[0])):
-			if bo[i][j]==0:
-				return (i,j)
-
+	for row in range(9):
+		for col in range(9):
+			if(bo[row][col]== 0):
+				return (row,col)
 	return False
 
 def valid(bo,num,pos):
@@ -60,12 +59,12 @@ def valid(bo,num,pos):
 	x,y = pos
 	#checking if row is valid
 	for i in range(len(bo[0])):
-		if bo[x][i] == num and y!=i: #y is the y cordinate or in the case the column number
+		if bo[x][i] == num: 
 			return False
 
 	#checking if column is valid
 	for i in range(len(bo)):
-		if bo[y][i]==num and x==i:
+		if bo[i][y]==num:
 			return False
 
 	#check box say (0,4)
