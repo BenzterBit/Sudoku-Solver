@@ -1,6 +1,7 @@
 def input_board():
 	'''
-	inputs each number line by line
+	reads from readfile.txt and creates a board
+	returns - board / sudoku
 	'''
 
 	file = open('readfile.txt',mode='r')
